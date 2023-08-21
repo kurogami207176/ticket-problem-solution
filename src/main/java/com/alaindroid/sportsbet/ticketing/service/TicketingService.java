@@ -5,18 +5,19 @@ import com.alaindroid.sportsbet.model.TicketType;
 import com.alaindroid.sportsbet.pricing.service.PricingService;
 import com.alaindroid.sportsbet.ticketing.model.TicketingRequest;
 import com.alaindroid.sportsbet.ticketing.model.TicketingResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class TicketingService {
     @Autowired
     private PricingService pricingService;
@@ -24,7 +25,7 @@ public class TicketingService {
     private CustomerCategoriserService customerCategoriserService;
     @Autowired
     private DiscountServices discountServices;
-    public TicketingResponse getPrice(TicketingRequest ticketingRequest) {
+    public TicketingResponse getTickets(TicketingRequest ticketingRequest) {
         Map<TicketType, Long> ticketCounts = ticketingRequest.customers().stream()
                 .map(customerCategoriserService::getTicketType)
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));

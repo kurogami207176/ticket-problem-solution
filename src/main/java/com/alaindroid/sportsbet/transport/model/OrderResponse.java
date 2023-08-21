@@ -9,7 +9,7 @@ import java.util.Objects;
 public record OrderResponse(int transactionId, List<Ticket> tickets, BigDecimal totaCost) {
     public OrderResponse {
         Objects.requireNonNull(tickets, "tickets cannot be null");
-        Objects.requireNonNull(totaCost, "name cannot be null");
+        Objects.requireNonNull(totaCost, "totaCost cannot be null");
     }
 
 }
