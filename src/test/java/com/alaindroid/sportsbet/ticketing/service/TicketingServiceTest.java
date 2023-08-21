@@ -58,7 +58,7 @@ class TicketingServiceTest {
         when(mockCustomerCategoriserService.getTicketType(eq(adult)))
                 .thenReturn(TicketType.ADULT);
         when(mockDiscountService.applyDiscounts(any()))
-                .thenAnswer( invocationOnMock -> invocationOnMock.getArgument(0));
+                .thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
         when(mockPricingService.getPrice(any()))
                 .thenReturn(BigDecimal.ONE);
         TicketingRequest request = new TicketingRequest(Arrays.asList(child, teen, adult, senior));
@@ -80,13 +80,14 @@ class TicketingServiceTest {
                 .isEqualByComparingTo(BigDecimal.valueOf(0));
         assertThat(response.tickets()).hasSize(0);
     }
+
     @Test
     void getTickets__TwoOfOne__OneTickets() {
         // Given
         when(mockCustomerCategoriserService.getTicketType(eq(child)))
                 .thenReturn(TicketType.CHILDREN);
         when(mockDiscountService.applyDiscounts(any()))
-                .thenAnswer( invocationOnMock -> invocationOnMock.getArgument(0));
+                .thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
         when(mockPricingService.getPrice(any()))
                 .thenReturn(BigDecimal.ONE);
         TicketingRequest request = new TicketingRequest(Arrays.asList(child, child));
@@ -109,7 +110,7 @@ class TicketingServiceTest {
         when(customerCategoriserService.getTicketType(eq(adult)))
                 .thenReturn(TicketType.ADULT);
         when(discountServices.applyDiscounts(any()))
-                .thenAnswer( invocationOnMock -> invocationOnMock.getArgument(0));
+                .thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
         when(pricingService.getPrice(any()))
                 .thenReturn(BigDecimal.ONE);
     }

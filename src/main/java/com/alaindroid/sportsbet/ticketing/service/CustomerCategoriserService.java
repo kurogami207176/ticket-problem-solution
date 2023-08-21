@@ -9,14 +9,11 @@ public class CustomerCategoriserService {
     public TicketType getTicketType(Customer customer) {
         if (customer.age() >= 65) {
             return TicketType.SENIOR;
-        }
-        else if(customer.age() >= 18) {
+        } else if (customer.age() >= 18) {
             return TicketType.ADULT;
-        }
-        else if (customer.age() >= 11) {
+        } else if (customer.age() >= 11) {
             return TicketType.TEEN;
-        }
-        else {
+        } else {
             return TicketType.CHILDREN;
         }
     }

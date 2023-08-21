@@ -10,6 +10,7 @@ import java.util.Map;
 @Component
 public class PricingData {
     private static final Map<TicketType, BigDecimal> pricesDb = new HashMap<>();
+
     static {
         pricesDb.put(TicketType.ADULT, BigDecimal.valueOf(25.0));
         pricesDb.put(TicketType.SENIOR, BigDecimal.valueOf(25.0 * 0.7));

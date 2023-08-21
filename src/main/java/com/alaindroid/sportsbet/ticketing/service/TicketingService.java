@@ -25,6 +25,7 @@ public class TicketingService {
     private CustomerCategoriserService customerCategoriserService;
     @Autowired
     private DiscountServices discountServices;
+
     public TicketingResponse getTickets(TicketingRequest ticketingRequest) {
         Map<TicketType, Long> ticketCounts = ticketingRequest.customers().stream()
                 .map(customerCategoriserService::getTicketType)

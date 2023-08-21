@@ -40,6 +40,7 @@ class DiscountServicesTest {
         Ticket result = discountServices.applyDiscounts(ticket);
         assertThat(ticket).isSameAs(result);
     }
+
     @Test
     void applyDiscounts__Child_MinWithDiscount__NoDiscount() {
         Ticket ticket = new Ticket(TicketType.CHILDREN, 3, BigDecimal.TEN);
