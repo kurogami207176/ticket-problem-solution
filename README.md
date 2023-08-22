@@ -11,19 +11,25 @@ Run
 ```shell
 ./mvnw spring-boot:run
 ```
+## Entry Point
+API definition is located at `com/alaindroid/sportsbet/orders/controller/Ordering.java`
 ## Configuration
-Current configuration is done via `application.yml`
+Current configuration is done via `application.yml`. This includes the following:
+- Pricing
+- Discount
+- Customer Categorisation
 ## Domains
-### Common
-This is the common domain. This includes the common objects across the different domains. 
-### Pricing
-This is the domain responsible for providing the pricing for a ticket. This will have a prices data source.
+### Ordering API
+This is the API layer. This is the domain responsible for taking the orders and delegating the request to the ticketing service.
 
 ### Ticketing
 This is the domain responsible for categorising the customers into a ticket type and offering discounts. Orchestrating is done here.
 
-### Ordering API
-This is the API layer. This is the domain responsible for taking the orders and delagating the requesting to the ticketing service.
+### Pricing
+This is the domain responsible for providing the pricing for a ticket. This will have a prices data source.
+
+### Common
+This is the common domain. This includes the common objects across the different domains. 
 
 ### Transaction
 This manages the transactionId for the response.
