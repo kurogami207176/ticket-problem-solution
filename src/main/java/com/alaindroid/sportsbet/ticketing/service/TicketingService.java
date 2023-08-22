@@ -1,7 +1,7 @@
 package com.alaindroid.sportsbet.ticketing.service;
 
-import com.alaindroid.sportsbet.model.Ticket;
-import com.alaindroid.sportsbet.model.TicketType;
+import com.alaindroid.sportsbet.common.model.Ticket;
+import com.alaindroid.sportsbet.common.model.TicketType;
 import com.alaindroid.sportsbet.pricing.service.PricingService;
 import com.alaindroid.sportsbet.ticketing.model.TicketingRequest;
 import com.alaindroid.sportsbet.ticketing.model.TicketingResponse;

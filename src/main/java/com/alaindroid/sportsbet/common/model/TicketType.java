@@ -1,4 +1,4 @@
-package com.alaindroid.sportsbet.model;
+package com.alaindroid.sportsbet.common.model;
 
 public enum TicketType {
     ADULT("Adult"), SENIOR("Senior"), TEEN("Teen"), CHILDREN("Children");

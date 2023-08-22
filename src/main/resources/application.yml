@@ -1,0 +1,21 @@
+pricing:
+  matrix:
+    ADULT: 25.0
+    SENIOR: 17.50
+    TEEN: 12.0
+    CHILDREN: 5.0
+discount:
+  tickets:
+    CHILDREN:
+      minimumQuantity: 3
+      discount: 0.25
+customer:
+  types:
+    - type: ADULT
+      minimumAge: 18
+    - type: SENIOR
+      minimumAge: 65
+    - type: TEEN
+      minimumAge: 11
+    - type: CHILDREN
+      minimumAge: 0

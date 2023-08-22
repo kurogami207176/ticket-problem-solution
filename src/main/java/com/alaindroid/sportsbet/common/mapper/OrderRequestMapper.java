@@ -1,7 +1,7 @@
-package com.alaindroid.sportsbet.mapper;
+package com.alaindroid.sportsbet.common.mapper;
 
+import com.alaindroid.sportsbet.orders.model.OrderRequest;
 import com.alaindroid.sportsbet.ticketing.model.TicketingRequest;
-import com.alaindroid.sportsbet.transport.model.OrderRequest;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

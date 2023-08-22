@@ -1,10 +1,10 @@
 package com.alaindroid.sportsbet;
 
-import com.alaindroid.sportsbet.model.Customer;
-import com.alaindroid.sportsbet.model.Ticket;
-import com.alaindroid.sportsbet.model.TicketType;
-import com.alaindroid.sportsbet.transport.model.OrderRequest;
-import com.alaindroid.sportsbet.transport.model.OrderResponse;
+import com.alaindroid.sportsbet.common.model.Customer;
+import com.alaindroid.sportsbet.common.model.Ticket;
+import com.alaindroid.sportsbet.common.model.TicketType;
+import com.alaindroid.sportsbet.orders.model.OrderRequest;
+import com.alaindroid.sportsbet.orders.model.OrderResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,12 +16,11 @@ import java.math.BigDecimal;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class EndToEndTests {
+class BlackBoxTests {
 
     @Value(value = "${local.server.port}")
     private int port;
@@ -29,7 +28,7 @@ class EndToEndTests {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    private SecureRandom random = new SecureRandom();
+    private final SecureRandom random = new SecureRandom();
 
 
     @Test
@@ -58,7 +57,7 @@ class EndToEndTests {
         // When
         ResponseEntity<OrderResponse> response = restTemplate.postForEntity(url, request, OrderResponse.class);
         // Then
-        assertThat(response.getBody().totaCost()).isEqualByComparingTo(BigDecimal.valueOf(27.50));
+        assertThat(response.getBody().totalCost()).isEqualByComparingTo(BigDecimal.valueOf(27.50));
         // And
         assertTicketFromList(response.getBody(), 0, TicketType.CHILDREN, 2, 10.00);
         // SENIOR
@@ -83,7 +82,7 @@ class EndToEndTests {
         ResponseEntity<OrderResponse> response = restTemplate.postForEntity(url, request, OrderResponse.class);
         System.out.println(response.getBody());
         // Then
-        assertThat(response.getBody().totaCost()).isEqualByComparingTo(BigDecimal.valueOf(48.25));
+        assertThat(response.getBody().totalCost()).isEqualByComparingTo(BigDecimal.valueOf(48.25));
         // And
         assertTicketFromList(response.getBody(), 0, TicketType.ADULT, 1, 25.00);
         // SENIOR
@@ -106,7 +105,7 @@ class EndToEndTests {
         // When
         ResponseEntity<OrderResponse> response = restTemplate.postForEntity(url, request, OrderResponse.class);
         // Then
-        assertThat(response.getBody().totaCost()).isEqualByComparingTo(BigDecimal.valueOf(59.50));
+        assertThat(response.getBody().totalCost()).isEqualByComparingTo(BigDecimal.valueOf(59.50));
         // And
         assertTicketFromList(response.getBody(), 0, TicketType.ADULT, 1, 25.00);
         // SENIOR

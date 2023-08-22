@@ -1,4 +1,4 @@
-package com.alaindroid.sportsbet.model;
+package com.alaindroid.sportsbet.common.model;
 
 import java.math.BigDecimal;
 

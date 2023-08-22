@@ -1,24 +1,21 @@
 package com.alaindroid.sportsbet.ticketing.service;
 
-import com.alaindroid.sportsbet.model.Customer;
-import com.alaindroid.sportsbet.model.TicketType;
+import com.alaindroid.sportsbet.common.model.Customer;
+import com.alaindroid.sportsbet.common.model.TicketType;
 import com.alaindroid.sportsbet.pricing.service.PricingService;
 import com.alaindroid.sportsbet.ticketing.model.TicketingRequest;
 import com.alaindroid.sportsbet.ticketing.model.TicketingResponse;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;

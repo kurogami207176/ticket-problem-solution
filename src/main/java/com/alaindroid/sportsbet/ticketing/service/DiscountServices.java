@@ -1,20 +1,26 @@
 package com.alaindroid.sportsbet.ticketing.service;
 
-import com.alaindroid.sportsbet.model.Ticket;
-import com.alaindroid.sportsbet.model.TicketType;
+import com.alaindroid.sportsbet.common.model.Ticket;
+import com.alaindroid.sportsbet.ticketing.model.DiscountConfiguration;
+import com.alaindroid.sportsbet.ticketing.model.TicketDiscount;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 @Service
+@AllArgsConstructor
 public class DiscountServices {
 
-    private static final BigDecimal CHILDREN_DISCOUNT_SCALE = BigDecimal.valueOf(0.75);
+    private DiscountConfiguration configuration;
 
     public Ticket applyDiscounts(Ticket ticket) {
-        if (ticket.ticketType() == TicketType.CHILDREN && ticket.quantity() >= 3) {
-            return new Ticket(ticket.ticketType(), ticket.quantity(), ticket.totalCost().multiply(CHILDREN_DISCOUNT_SCALE));
+        TicketDiscount ticketDiscount = configuration.tickets().get(ticket.ticketType());
+        if (ticketDiscount == null || ticket.quantity() < ticketDiscount.minimumQuantity()) {
+            return ticket;
         }
-        return ticket;
+        BigDecimal scale = BigDecimal.ONE.subtract(ticketDiscount.discount());
+        BigDecimal discountedPrice = ticket.totalCost().multiply(scale);
+        return new Ticket(ticket.ticketType(), ticket.quantity(), discountedPrice);
     }
 }

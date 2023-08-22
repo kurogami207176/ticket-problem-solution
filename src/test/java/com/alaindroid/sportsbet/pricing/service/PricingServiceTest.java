@@ -1,7 +1,7 @@
 package com.alaindroid.sportsbet.pricing.service;
 
-import com.alaindroid.sportsbet.model.TicketType;
-import com.alaindroid.sportsbet.pricing.data.PricingData;
+import com.alaindroid.sportsbet.common.model.TicketType;
+import com.alaindroid.sportsbet.pricing.datasource.PricingData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

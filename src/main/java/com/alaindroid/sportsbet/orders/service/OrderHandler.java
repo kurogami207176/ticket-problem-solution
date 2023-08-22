@@ -1,13 +1,13 @@
-package com.alaindroid.sportsbet.transport.handler;
+package com.alaindroid.sportsbet.orders.service;
 
-import com.alaindroid.sportsbet.mapper.OrderRequestMapper;
-import com.alaindroid.sportsbet.model.Ticket;
+import com.alaindroid.sportsbet.common.mapper.OrderRequestMapper;
+import com.alaindroid.sportsbet.common.model.Ticket;
 import com.alaindroid.sportsbet.ticketing.model.TicketingRequest;
 import com.alaindroid.sportsbet.ticketing.model.TicketingResponse;
 import com.alaindroid.sportsbet.ticketing.service.TicketingService;
 import com.alaindroid.sportsbet.transaction.TransactionIdService;
-import com.alaindroid.sportsbet.transport.model.OrderRequest;
-import com.alaindroid.sportsbet.transport.model.OrderResponse;
+import com.alaindroid.sportsbet.orders.model.OrderRequest;
+import com.alaindroid.sportsbet.orders.model.OrderResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,8 @@
-package com.alaindroid.sportsbet.transport.controller;
+package com.alaindroid.sportsbet.orders.controller;
 
-import com.alaindroid.sportsbet.transport.handler.OrderHandler;
-import com.alaindroid.sportsbet.transport.model.OrderRequest;
-import com.alaindroid.sportsbet.transport.model.OrderResponse;
+import com.alaindroid.sportsbet.orders.service.OrderHandler;
+import com.alaindroid.sportsbet.orders.model.OrderRequest;
+import com.alaindroid.sportsbet.orders.model.OrderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

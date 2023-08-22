@@ -1,28 +1,25 @@
-package com.alaindroid.sportsbet.transport.handler;
+package com.alaindroid.sportsbet.orders.service;
 
-import com.alaindroid.sportsbet.mapper.OrderRequestMapper;
-import com.alaindroid.sportsbet.model.Ticket;
-import com.alaindroid.sportsbet.model.TicketType;
+import com.alaindroid.sportsbet.common.mapper.OrderRequestMapper;
+import com.alaindroid.sportsbet.common.model.Ticket;
+import com.alaindroid.sportsbet.common.model.TicketType;
 import com.alaindroid.sportsbet.ticketing.model.TicketingRequest;
 import com.alaindroid.sportsbet.ticketing.model.TicketingResponse;
 import com.alaindroid.sportsbet.ticketing.service.TicketingService;
 import com.alaindroid.sportsbet.transaction.TransactionIdService;
-import com.alaindroid.sportsbet.transport.model.OrderRequest;
-import com.alaindroid.sportsbet.transport.model.OrderResponse;
+import com.alaindroid.sportsbet.orders.model.OrderRequest;
+import com.alaindroid.sportsbet.orders.model.OrderResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
@@ -57,7 +54,7 @@ class OrderHandlerTest {
         when(mockTicketResponse.totalCost())
                 .thenReturn(BigDecimal.TEN);
         OrderResponse response = orderHandler.createOrder(orderRequest);
-        assertThat(response.totaCost())
+        assertThat(response.totalCost())
                 .isEqualByComparingTo(BigDecimal.TEN);
     }
 

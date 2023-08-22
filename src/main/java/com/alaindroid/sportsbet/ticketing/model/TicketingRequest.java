@@ -1,6 +1,6 @@
 package com.alaindroid.sportsbet.ticketing.model;
 
-import com.alaindroid.sportsbet.model.Customer;
+import com.alaindroid.sportsbet.common.model.Customer;
 
 import java.util.List;
 
