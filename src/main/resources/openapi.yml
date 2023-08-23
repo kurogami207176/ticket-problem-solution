@@ -1,0 +1,84 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Ordering API
+paths:
+  /order:
+    post:
+      summary: Create an order
+      operationId: order
+      tags:
+        - order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        default:
+          description: OK
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+components:
+  schemas:
+    OrderRequest:
+      type: object
+      required:
+        - transactionId
+        - customers
+      properties:
+        transactionId:
+          type: integer
+          format: int32
+        customers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+    Customer:
+      type: object
+      required:
+        - name
+        - age
+      properties:
+        name:
+          type: string
+        age:
+          type: integer
+          format: int32
+    OrderResponse:
+      type: object
+      required:
+        - transactionId
+        - tickets
+        - totalCost
+      properties:
+        transactionId:
+          type: integer
+          format: int32
+        tickets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ticket'
+        totalCost:
+          type: number
+          format: double
+    Ticket:
+      type: object
+      required:
+        - ticketType
+        - quantity
+        - totalCost
+      properties:
+        ticketType:
+          type: string
+          enum: [Adult, Senior, Teen, Children]
+        quantity:
+          type: integer
+          format: int32
+        totalCost:
+          type: number
+          format: double

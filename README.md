@@ -1,4 +1,4 @@
-# Pricing System
+# Ticketing System
 ## Overview
 This is the solution for the ticketing system.
 ## Build & Test
@@ -12,7 +12,7 @@ Run
 ./mvnw spring-boot:run
 ```
 ## Entry Point
-API definition is located at `com/alaindroid/sportsbet/orders/controller/Ordering.java`
+API definition is located at `src/main/resources/openapi.yml`
 ## Configuration
 Current configuration is done via `application.yml`. This includes the following:
 - Pricing

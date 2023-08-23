@@ -1,10 +1,10 @@
 package com.alaindroid.sportsbet;
 
-import com.alaindroid.sportsbet.common.model.Customer;
-import com.alaindroid.sportsbet.common.model.Ticket;
+import com.alaindroid.sportsbet.api.model.Customer;
+import com.alaindroid.sportsbet.api.model.OrderRequest;
+import com.alaindroid.sportsbet.api.model.OrderResponse;
+import com.alaindroid.sportsbet.api.model.Ticket;
 import com.alaindroid.sportsbet.common.model.TicketType;
-import com.alaindroid.sportsbet.orders.model.OrderRequest;
-import com.alaindroid.sportsbet.orders.model.OrderResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -57,7 +57,7 @@ class BlackBoxTests {
         // When
         ResponseEntity<OrderResponse> response = restTemplate.postForEntity(url, request, OrderResponse.class);
         // Then
-        assertThat(response.getBody().totalCost()).isEqualByComparingTo(BigDecimal.valueOf(27.50));
+        assertThat(response.getBody().getTotalCost()).isEqualByComparingTo(27.50d);
         // And
         assertTicketFromList(response.getBody(), 0, TicketType.CHILDREN, 2, 10.00);
         // SENIOR
@@ -82,7 +82,7 @@ class BlackBoxTests {
         ResponseEntity<OrderResponse> response = restTemplate.postForEntity(url, request, OrderResponse.class);
         System.out.println(response.getBody());
         // Then
-        assertThat(response.getBody().totalCost()).isEqualByComparingTo(BigDecimal.valueOf(48.25));
+        assertThat(response.getBody().getTotalCost()).isEqualByComparingTo(48.25d);
         // And
         assertTicketFromList(response.getBody(), 0, TicketType.ADULT, 1, 25.00);
         // SENIOR
@@ -105,7 +105,7 @@ class BlackBoxTests {
         // When
         ResponseEntity<OrderResponse> response = restTemplate.postForEntity(url, request, OrderResponse.class);
         // Then
-        assertThat(response.getBody().totalCost()).isEqualByComparingTo(BigDecimal.valueOf(59.50));
+        assertThat(response.getBody().getTotalCost()).isEqualByComparingTo(59.50d);
         // And
         assertTicketFromList(response.getBody(), 0, TicketType.ADULT, 1, 25.00);
         // SENIOR
@@ -118,10 +118,10 @@ class BlackBoxTests {
                                              TicketType ticketType,
                                              int quantity,
                                              double totalCost) {
-        Ticket ticketA = response.tickets().get(index);
-        assertThat(ticketA.ticketType()).isEqualTo(ticketType);
-        assertThat(ticketA.quantity()).isEqualTo(quantity);
-        assertThat(ticketA.totalCost()).isEqualByComparingTo(BigDecimal.valueOf(totalCost));
+        Ticket ticketA = response.getTickets().get(index);
+        assertThat(ticketA.getTicketType().getValue()).isEqualTo(ticketType.toString());
+        assertThat(ticketA.getQuantity()).isEqualTo(quantity);
+        assertThat(ticketA.getTotalCost()).isEqualByComparingTo(totalCost);
     }
 
 }

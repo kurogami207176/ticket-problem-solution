@@ -1,7 +1,7 @@
 package com.alaindroid.sportsbet;
 
-import com.alaindroid.sportsbet.orders.model.OrderRequest;
-import com.alaindroid.sportsbet.orders.model.OrderResponse;
+import com.alaindroid.sportsbet.api.model.OrderRequest;
+import com.alaindroid.sportsbet.api.model.OrderResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;

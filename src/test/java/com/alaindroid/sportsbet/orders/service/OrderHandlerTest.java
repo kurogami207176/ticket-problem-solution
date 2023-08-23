@@ -3,12 +3,12 @@ package com.alaindroid.sportsbet.orders.service;
 import com.alaindroid.sportsbet.common.mapper.OrderRequestMapper;
 import com.alaindroid.sportsbet.common.model.Ticket;
 import com.alaindroid.sportsbet.common.model.TicketType;
+import com.alaindroid.sportsbet.orders.model.OrderDelegateRequest;
 import com.alaindroid.sportsbet.ticketing.model.TicketingRequest;
 import com.alaindroid.sportsbet.ticketing.model.TicketingResponse;
 import com.alaindroid.sportsbet.ticketing.service.TicketingService;
 import com.alaindroid.sportsbet.transaction.TransactionIdService;
-import com.alaindroid.sportsbet.orders.model.OrderRequest;
-import com.alaindroid.sportsbet.orders.model.OrderResponse;
+import com.alaindroid.sportsbet.orders.model.OrderDelegateResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -39,7 +39,7 @@ class OrderHandlerTest {
         orderHandler = new OrderHandler(requestMapper, ticketingService, transactionIdService);
         mockTicketRequest = mock(TicketingRequest.class);
         mockTicketResponse = mock(TicketingResponse.class);
-        when(requestMapper.map(any()))
+        when(requestMapper.map(any(OrderDelegateRequest.class)))
                 .thenReturn(mockTicketRequest);
         when(ticketingService.getTickets(any()))
                 .thenReturn(mockTicketResponse);
@@ -50,17 +50,17 @@ class OrderHandlerTest {
 
     @Test
     void createOrder__TotalCost10__ReturnedTotalCost10() {
-        OrderRequest orderRequest = Mockito.mock(OrderRequest.class);
+        OrderDelegateRequest orderDelegateRequest = Mockito.mock(OrderDelegateRequest.class);
         when(mockTicketResponse.totalCost())
                 .thenReturn(BigDecimal.TEN);
-        OrderResponse response = orderHandler.createOrder(orderRequest);
+        OrderDelegateResponse response = orderHandler.createOrder(orderDelegateRequest);
         assertThat(response.totalCost())
                 .isEqualByComparingTo(BigDecimal.TEN);
     }
 
     @Test
     void createOrder__UnOrderedTickets__ReturnOrderedTickets() {
-        OrderRequest orderRequest = Mockito.mock(OrderRequest.class);
+        OrderDelegateRequest orderDelegateRequest = Mockito.mock(OrderDelegateRequest.class);
         when(mockTicketResponse.totalCost())
                 .thenReturn(BigDecimal.TEN);
         Ticket ticketSenior = new Ticket(TicketType.SENIOR, 1, BigDecimal.ONE);
@@ -69,7 +69,7 @@ class OrderHandlerTest {
         Ticket ticketChild = new Ticket(TicketType.CHILDREN, 1, BigDecimal.ONE);
         when(mockTicketResponse.tickets())
                 .thenReturn(Arrays.asList(ticketChild, ticketSenior, ticketTeen, ticketAdult));
-        OrderResponse response = orderHandler.createOrder(orderRequest);
+        OrderDelegateResponse response = orderHandler.createOrder(orderDelegateRequest);
         assertThat(response.tickets().get(0).ticketType())
                 .isEqualByComparingTo(TicketType.ADULT);
         assertThat(response.tickets().get(1).ticketType())
